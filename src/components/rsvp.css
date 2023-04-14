@@ -1,0 +1,164 @@
+.header {
+    max-height: 4rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgb(147,101,89);
+}
+
+.img-back {
+    background-color: rgb(147,101,89);
+    border: none;
+}
+
+.picture-body {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-size: cover;
+    background-color: rgb(147,101,89);
+}
+
+.picture {
+    height: 20%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-header {
+    margin: 2.5px auto 0px;
+    height: 40px;
+    letter-spacing: 2px;
+    color: rgb(255,255,255);
+    font-size: 21px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.buttom-header {
+    position: absolute;
+    background-color: rgb(147,101,89);
+    top: -2px;
+    right: 0;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+    color: rgb(255,255,255);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.progress-bar {
+    background-color: #e9e9ed;
+    border-radius: 12px;
+}
+
+.progress {
+    width: 5px;
+    background-color: rgb(255,255,255);
+    border-radius: 12px;
+    height: 8px;
+}
+
+.names-wedding {
+    margin-bottom: 40px;
+}
+
+.names {
+    padding-top: 90px;
+    font-family: 'Tenor Sans';
+    color: rgb(255,255,255);
+    font-weight: normal;
+    letter-spacing: 4px;
+    text-transform: none;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    padding-top: 100px;
+    font-size: 28px;
+}
+
+.info-wedding {
+    color: rgb(255,255,255);
+    font-size: 22px;
+    font-weight: 400;
+    font-family: 'Be Vietnam Pro';
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.search-guest {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    font-family: "Be Vietnam Pro";
+    letter-spacing: 1px;
+    color: rgb(255,255,255);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.name-guest{
+    position: relative;
+}
+
+.input-guest {
+    background-color: rgb(147,101,89);
+    color: rgb(255,255,255);
+    border-color: rgb(255,255,255);
+    width: 90%;
+    height: 50px;
+    font-size: 22px;
+    font-weight: 500;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.input-guest::placeholder { color: rgb(255,255,255)}
+
+.buttom-guest{
+    width: 90%;
+    line-height: 2.75rem;
+    min-width: 180px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    cursor: pointer;
+    padding-bottom: 0px;
+    padding-top: 0.125rem;
+    text-align: center;
+    font-family: "Be Vietman Pro";
+    letter-spacing: 2px;
+    color: rgb(147,101,89);
+    font-size: 16px;
+    position: relative;
+    margin-top: 20px;
+    background-color: rgb(255,255,255);
+    text-transform: uppercase;
+    display: block !important;
+    width: 100%;
+    font-weight: 700;
+    border-radius: 2px;
+    transition: background-color 0.1s ease-out 0s, color, border-color;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    border-color: rgb(255,255,255);
+}
+
+.buttom-guest:disabled, .buttom-guest:hover:disabled {
+    opacity: 0.5;
+    cursor: default;
+    background-color: rgb(255, 255, 255);
+    color: rgb(147, 101, 89);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700 !important;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
