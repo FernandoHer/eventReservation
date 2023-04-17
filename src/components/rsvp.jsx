@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import './rsvp.css'
-import { WenddingAccept } from './wenddingAccept'
+import {AiOutlineCalendar} from 'react-icons/ai'
+import {GrLocation} from 'react-icons/gr'
 
 export const RSVP = () => {
 
   const [fullName, setFullName] = useState("")
-  const [guestFound, setGuestFound] = useState([])
+  const [guestFound, setGuestFound] = useState([{}])
+  const [verifyGuess, setVerifyGuess] = useState(false)
 
   const guests = [
     {
@@ -41,20 +43,9 @@ export const RSVP = () => {
 
 
   const weddingConfirmation = (guest) => {
-    console.log("GUEST", guest.name)
-    
+    console.log("GUEST", guest.name, guestFound)
     return (
-      <>
-      <WenddingAccept  guest={guestFound}/>
-        <div>
-          <ul>
-            <li>{guest.name[0]}</li>
-            <li>{guest.name[1]}</li>
-
-          </ul>
-        </div>
-      </>
-
+      <h2>chaoo</h2>
     )
 
 
@@ -66,6 +57,7 @@ export const RSVP = () => {
       for (const element of guest.name) {
         if (element.toLowerCase().includes(fullName.toLowerCase())) {
           setGuestFound(guest)
+          setVerifyGuess(true)
           return (
             weddingConfirmation(guestFound)
           )
@@ -106,34 +98,105 @@ export const RSVP = () => {
               className="img-back img-fluid img-thumbnail" />
           </picture>
         </div>
-        <div className="names-wedding">
-          <h2 data-testid="wedding-name" className="names">Mariela &amp; Juan's Wedding</h2>
-          <div className="info-wedding">
-            If you're responding for you and a guest (or your family), you'll be able to RSVP for your entire group.
-          </div>
-        </div>
-        <form>
-          <div className="search-guest">
-            <div className="name-guest">
-              <input type="text"
-                className="input-guest"
-                id="wedding"
-                name="fullName"
-                pattern='[a-z]'
-                placeholder="Full Name"
-                onChange={(e) => setFullName(e.target.value)}
-              />
+
+        {!verifyGuess
+          ? <>
+            <div className="names-wedding">
+              <h2 data-testid="wedding-name" className="names">Mariela &amp; Juan's Wedding</h2>
+              <div className="info-wedding">
+                If you're responding for you and a guest (or your family), you'll be able to RSVP for your entire group.
+              </div>
             </div>
-          </div>
-          <button type="submit"
-            data-testid="guest-search-submit"
-            color="primary"
-            className="buttom-guest"
-            onClick={(e) => searchGuest(e)}
-          >
-            Find Your Invitation
-          </button>
-        </form>
+            <form>
+              <div className="search-guest">
+                <div className="name-guest">
+                  <input type="text"
+                    className="input-guest"
+                    id="wedding"
+                    name="fullName"
+                    pattern='[a-z]'
+                    placeholder="Full Name"
+                    onChange={(e) => setFullName(e.target.value)}
+                  />
+                </div>
+              </div>
+              <button type="submit"
+                data-testid="guest-search-submit"
+                color="primary"
+                className="buttom-guest"
+                onClick={(e) => searchGuest(e)}
+              >
+                Find Your Invitation
+              </button>
+            </form>
+          </>
+          : <></>
+        }
+
+        {
+          verifyGuess
+            ?
+            <div>
+
+              <div className="css-jtawwa">
+                <h2 data-testid="event-title" className="white-party">White Party Cocktail</h2>
+                <div data-testid="event-date" className="white-party-items">
+                  <span className="white-party-item-span">
+                  <AiOutlineCalendar />
+                  </span>Thursday, August 10, 2023  at 09:00 PM
+                </div>
+                <div data-testid="event-location" className="white-party-items">
+                  <span className="white-party-item-span">
+                    <GrLocation />
+                  </span>
+                  <div>Casa Firenza Hotel &amp; Suits Boutique
+                    <a className="css-5vtfjm">View Full Address</a>
+                  </div>
+                </div>
+                <div data-testid="event-note" className="white-party-items">
+                  <span className="white-party-item-span">
+                    {/* <svg className="icon--69a8b size-sm--aac4d  css-6wklle ">
+                      <use xlink:href="#v2-icon-notes"></use>
+                    </svg> */}
+                  </span>Casa Firenza Rooftop
+                </div>
+                <div data-testid="event-attire" className="white-party-items">
+                  <span className="white-party-item-span">
+                    {/* <svg className="icon--69a8b size-sm--aac4d  css-6wklle ">
+                      <use xlink:href="#v2-icon-attire"></use>
+                    </svg> */}
+                  </span>White Attire Only
+                </div>
+              </div>
+              {
+                <ul className='px-2'>
+                  {guestFound.name?.map((guest) => (
+                    <li className='d-flex ' key={Math.random()}>
+                      <div className='guest-found'>
+                        {guest}
+                      </div>
+                      
+                      <div className="d-flex">
+                        <button data-testid="accept" className="button-accept">
+                          <span className="css-7vb7b0">Accepted</span>
+                        </button>
+                        <button data-testid="reject" className="button-decline">
+                          <span className="css-7vb7b0">Decline</span>
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              }
+            </div>
+
+
+            : <></>
+        }
+
+
+
+
       </div>
 
     </>
