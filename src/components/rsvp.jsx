@@ -8,6 +8,8 @@ export const RSVP = () => {
   const [fullName, setFullName] = useState("")
   const [guestFound, setGuestFound] = useState([{}])
   const [verifyGuess, setVerifyGuess] = useState(false)
+  const [idGuess, setIdGuess] = useState("")
+  const [idNameGuess, setIdNameGuess] = useState("")
 
   const guests = [
     {
@@ -42,14 +44,6 @@ export const RSVP = () => {
   ]
 
 
-  const weddingConfirmation = (guest) => {
-    console.log("GUEST", guest.name, guestFound)
-    return (
-      <h2>chaoo</h2>
-    )
-
-
-  }
 
   const searchGuest = (e) => {
     e.preventDefault();
@@ -58,12 +52,37 @@ export const RSVP = () => {
         if (element.toLowerCase().includes(fullName.toLowerCase())) {
           setGuestFound(guest)
           setVerifyGuess(true)
-          return (
-            weddingConfirmation(guestFound)
-          )
         }
       }
     })
+  }
+
+  const acepted = (value,idAccept) => {
+    
+    const $dataSelectorAccept = document.getElementById(idAccept)
+    $dataSelectorAccept.removeAttribute('class') 
+    $dataSelectorAccept.setAttribute('class','button-accept')
+    
+    let idDe = idAccept.slice(6)
+    let idDecline = "decline" + idDe
+    const $dataSelectorDecline = document.getElementById(idDecline)
+    $dataSelectorDecline.removeAttribute('class')
+    $dataSelectorDecline.setAttribute('class','button-decline')
+   
+  }
+  const declined = (value,idDecline) => {
+      console.log("idDecline", idDecline)
+    const $dataSelectorDecline = document.getElementById(idDecline)
+    $dataSelectorDecline.removeAttribute('class')
+    $dataSelectorDecline.setAttribute('class','button-accept')
+
+    let idAc = idDecline.slice(7)
+    let idAccept = "accept" + idAc
+    const $dataSelectorAccept = document.getElementById(idAccept)
+    $dataSelectorAccept.removeAttribute('class')
+    $dataSelectorAccept.setAttribute('class','button-decline')
+  
+    
   }
 
 
@@ -170,17 +189,33 @@ export const RSVP = () => {
               </div>
               {
                 <ul className='px-2'>
-                  {guestFound.name?.map((guest) => (
-                    <li className='d-flex ' key={Math.random()}>
+                  {guestFound.name?.map((guest,index) => (
+                    <li className='d-flex ' 
+                        key={index.toString()}
+                        id={index.toString()}
+                        >
                       <div className='guest-found'>
                         {guest}
                       </div>
                       
                       <div className="d-flex">
-                        <button data-testid="accept" className="button-accept">
+                        <button data-testid="accept" 
+                                id={"accept" + guest}
+                                className="button-accept" 
+                                onClick={() => {
+                                  setIdGuess(index)
+                                  setIdNameGuess("accept" + guest)
+                                  acepted(idGuess,idNameGuess)
+                                  }}>
                           <span className="css-7vb7b0">Accepted</span>
                         </button>
-                        <button data-testid="reject" className="button-decline">
+                        <button data-testid="reject" 
+                                id={"decline" + guest}
+                                className="button-decline"
+                                onClick={() => {
+                                  setIdGuess(index)
+                                  setIdNameGuess("decline" + guest)
+                                  declined(idGuess,idNameGuess)}}>
                           <span className="css-7vb7b0">Decline</span>
                         </button>
                       </div>
